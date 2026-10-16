@@ -1,0 +1,18 @@
+{
+  "retrieved": [
+    {
+      "id": "doc-1",
+      "text": "Synthetic study: the sample contains 12 patients."
+    },
+    {
+      "id": "doc-2",
+      "text": "The control group contains 8 patients."
+    }
+  ],
+  "relevant_ids": [
+    "doc-1"
+  ],
+  "answer": "The sample contains 12 patients.",
+  "reference_answer": "The sample contains 12 patients.",
+  "k": 2
+}

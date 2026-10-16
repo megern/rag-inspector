@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>RAG Inspector</title>
+    <link rel="stylesheet" href="/assets/style.css" />
+  </head>
+  <body>
+    <header>
+      <small>Retrieval and answer evaluation · v0.2.0</small>
+      <h1>RAG Inspector</h1>
+      <p>
+        Inspect retrieval against your relevance labels, then check answer
+        overlap with retrieved evidence.
+      </p>
+      <a href="/guide">User guide</a> · <a href="/docs">API reference</a>
+    </header>
+    <main>
+      <div id="status" class="status" role="status" aria-live="polite">
+        Ready. Sample buttons load synthetic data; nothing runs automatically.
+      </div>
+      <div class="layout">
+        <section class="panel">
+          <h2>Ranked retrieval</h2>
+          <p class="hint">
+            Order documents as the retriever returned them. Only the first k
+            documents are evaluated.
+          </p>
+          <div id="documents"></div>
+          <button id="add-doc">Add document</button
+          ><label
+            >Relevant document IDs
+            <small
+              >Comma-separated gold labels for this query, including relevant
+              documents that were not retrieved.</small
+            ><input id="relevant" placeholder="doc-1, doc-3" /></label
+          ><label
+            >Requested k<input type="number" id="k" value="5" min="1" max="100"
+          /></label>
+        </section>
+        <section class="panel">
+          <h2>Answer comparison</h2>
+          <label>Generated answer<textarea id="answer"></textarea></label
+          ><label
+            >Reference answer
+            <small
+              >Optional labeled answer. Blank reference produces token F1 of
+              zero, not a semantic score.</small
+            ><textarea id="reference"></textarea>
+          </label>
+          <div class="actions">
+            <button id="run" class="primary">Evaluate query</button
+            ><button id="sample">Load synthetic query</button>
+          </div>
+          <label
+            >Import evaluation JSON<input
+              type="file"
+              id="import"
+              accept=".json,application/json"
+          /></label>
+          <div class="actions">
+            <button id="export-input">Export query setup</button
+            ><button id="export-report">Export evaluation report</button>
+          </div>
+        </section>
+        <section class="panel wide">
+          <h2>Evaluation results</h2>
+          <div id="results" class="empty">
+            Supply retrieved documents and labels, then evaluate.
+          </div>
+        </section>
+      </div>
+      <footer>
+        CPU-first · no external assets · inputs are sent to this app server when
+        analyzed · no automatic persistence. Treat reports as exploratory
+        evidence.
+      </footer>
+    </main>
+    <script type="module" src="/assets/ui.mjs"></script>
+  </body>
+</html>
