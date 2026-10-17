@@ -1,0 +1,6 @@
+ Container venture-lab-preview-rag-inspector-1  Creating
+ Container venture-lab-preview-rag-inspector-1  Created
+ Container venture-lab-preview-rag-inspector-1  Starting
+ Container venture-lab-preview-rag-inspector-1  Started
+ Container venture-lab-preview-rag-inspector-1  Waiting
+ Container venture-lab-preview-rag-inspector-1  Healthy

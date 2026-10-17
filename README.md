@@ -1,6 +1,6 @@
 # RAG Inspector
 
-Version 0.2.0 · CPU local tool · MIT
+Version 0.3.0 · CPU local tool · MIT
 
 RAG Inspector helps diagnose a single retrieval-augmented answer using the actual ranked documents, labeled relevant IDs and an optional reference answer. A ranked-document editor connects retrieval metrics to the evidence being evaluated, instead of hiding the analysis in a JSON response.
 
@@ -44,7 +44,7 @@ python -m bandit -q -r app
 python -m pip_audit -r requirements.txt
 ```
 
-Node 22 is used for browser-independent CSV/export logic tests; it is not needed to serve the application. Python tests include actual core calculations, validation failures and in-process HTTP integration. They do not establish Docker deployment or browser interaction success. Rebuild evidence belongs in `evidence/rebuild/`; earlier evidence is historical and does not validate this version. CI includes locked dependency installation, test/security gates, image scanning and secret scanning. Branch protection and release publication remain separate operator actions; no publication success is claimed by this README.
+Node 22 is used for browser-independent CSV/export logic tests; it is not needed to serve the application. Python tests include actual core calculations, validation failures and in-process HTTP integration. They do not establish Docker deployment or browser interaction success. Fresh 0.3.0 evidence belongs in `evidence/improvements-0.3/`. `evidence/rebuild/` records the earlier 0.2.0 rebuild; it does not validate this version. CI includes locked dependency installation, test/security gates, image scanning and secret scanning. Branch protection and release publication remain separate operator actions; no publication success is claimed by this README.
 
 MIT licensed. No paid service or new model download is required. Data is processed by this app server when you run an analysis. Inputs/results are not automatically saved by this application. JSON exports may contain the original input and sensitive values; inspect them before sharing. There is no authentication or rate limiter. Keep the localhost binding or supply access controls before exposing the server.
 
@@ -57,3 +57,11 @@ API example using explicitly synthetic data:
 ```sh
 curl --fail-with-body http://localhost:8000/analyze -H 'Content-Type: application/json' --data-binary @examples/synthetic.json
 ```
+
+## Evaluate a labeled query batch (0.3.0)
+
+Enter a unique query ID in **Labeled query batch**, then choose **Add current query to batch**. Each addition snapshots the current ranked documents, gold IDs, answer/reference and k. Editing the single-query editor later does not modify those snapshots. Repeat for additional queries, or import `examples/synthetic-batch.json`. Choose **Evaluate batch** to see per-query metrics and their macro averages. Export the batch setup to edit/reuse it, or export its evaluated report. Clearing/importing/adding queries invalidates prior batch reports.
+
+`POST /batch` accepts `{ "queries": [{ "id": "query-1", "evaluation": { ...single-query-request... } }] }`. Single-query `/analyze` is unchanged. Macro means give each **defined** query equal weight. Every metric includes `value`, `defined_cases` and `total_cases`; null recall from empty gold labels and null groundedness from an empty answer are excluded rather than converted to zero. When no case defines a metric its macro value is null. Blank references still produce zero reference-token F1 by the existing convention, and are included in the F1 macro. Precision uses each case's requested k even if fewer documents were returned. Macros do not pool all hits/tokens into one denominator.
+
+Limits: 1–20 unique query IDs of at most 100 characters; at most 500000 total document/answer/reference characters across the batch, plus the existing 2 MiB request cap and single-query limits. To bound output, each case shows up to 100 unsupported lexical tokens with at most 80 characters each; exact `unsupported_token_count` and a truncation flag are retained. Metric calculations always use full input tokens, not shortened detail. Synthetic examples are invented labeled cases, not a retrieval benchmark with external validity.

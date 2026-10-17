@@ -1,0 +1,193 @@
+{
+  "application": "rag-inspector",
+  "version": "0.3.0",
+  "reviewed_at_utc": "2026-10-17T02:36:44.113802+00:00",
+  "reviewer": "Independent AI scientific/security/QA reviewer build_science, different from this application author; no human audit claimed",
+  "production_modified_by_reviewer": false,
+  "status": "ACCEPT_LOCAL_SCOPE",
+  "confidence": "moderate for bounded documented local research scope",
+  "issues": [],
+  "scientific_assessment": "Independent unequal-k, null-gold, blank-answer, repeated-token and truncated-detail cases verify equal-weight defined-case macro means. Undefined cases are excluded with explicit denominators; token F1 still uses the complete multiset. Exact unique unsupported counts are preserved when displayed detail is truncated. Docs define precision requested-k denominator and lexical/semantic limits.",
+  "residual_limits": [
+    "Gold relevance remains user supplied; lexical groundedness/F1 do not demonstrate entailment or factual correctness.",
+    "Macro averages do not establish external benchmark validity. Interactive batch workflows remain a separate root browser gate."
+  ],
+  "checks": [
+    {
+      "name": "independent-pytest-final",
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.3/independent-pytest-final.txt"
+    },
+    {
+      "name": "independent-frontend-final",
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.3/independent-frontend-final.txt"
+    },
+    {
+      "name": "independent-bandit-final",
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.3/independent-bandit-final.txt"
+    }
+  ],
+  "source_hashes_sha256": [
+    {
+      "sha256": "e74496d32026daa50450156b4630fe9966d2580a07455399763a9ae450a5b864",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "sha256": "11e7bdd058b64cd74b6fe90a9687e6a9e4a5644139e2c5bdc4d27e7e1051b944",
+      "path": "Dockerfile"
+    },
+    {
+      "sha256": "c6eb7aae6ae551358e2f690bfcece0b8e15032e54b2127a67d944f7b7f38c418",
+      "path": "README.md"
+    },
+    {
+      "sha256": "9ef190ac5c708187c3c08177dd254281de613bc1356fd8182e45e6a5b77aaa8b",
+      "path": "app/USER_GUIDE.md"
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "app/__init__.py"
+    },
+    {
+      "sha256": "e502d8eb20608e901f24befb12c82f5d052185bc914a88da427ae95f16b94179",
+      "path": "app/core.py"
+    },
+    {
+      "sha256": "d1eda2150e58503114c6cf4ba36d5958aa7e2cfbb496fc0d8026b5c9da4beb77",
+      "path": "app/guard.py"
+    },
+    {
+      "sha256": "22cf8431c3fc375dfdbd2f304ed77273592f149fe201c40f0b43097aae74f34a",
+      "path": "app/index.html"
+    },
+    {
+      "sha256": "084e3ee61b5ea29702d049f0e56291ff994ef9b4b8426d9d1464de9766732b69",
+      "path": "app/main.py"
+    },
+    {
+      "sha256": "6410a7d942d231f320cf67bad5b575793d40db2c025d66d01a6eb4f5effef3a9",
+      "path": "app/static/common.mjs"
+    },
+    {
+      "sha256": "31edaeb85459bc32652a37b11a7f5c5f716f16915fde7fe607f1ac9e3b7367c3",
+      "path": "app/static/style.css"
+    },
+    {
+      "sha256": "4405036de35e774db5e54c70e42ea1d2caaa7d8fd5865d1b8afe9717f147adc8",
+      "path": "app/static/ui.mjs"
+    },
+    {
+      "sha256": "908db17023fde21d48829b52e9540899cfda4e230c935a744cda2899f400e0a4",
+      "path": "compose.yaml"
+    },
+    {
+      "sha256": "9ef190ac5c708187c3c08177dd254281de613bc1356fd8182e45e6a5b77aaa8b",
+      "path": "docs/USER_GUIDE.md"
+    },
+    {
+      "sha256": "da9d8b8c322407501139dafb2604d82b47db03bdc501e803d8d58d8877ffff15",
+      "path": "pyproject.toml"
+    },
+    {
+      "sha256": "4e030cebd3834809ad8e01e16633198a5d1b9c89f2ce583241751a8327285f55",
+      "path": "requirements-dev.lock"
+    },
+    {
+      "sha256": "cc2d915f3530f2b16ab605d633b94e6c8784ee70f799daf639dd30deef2361de",
+      "path": "requirements-dev.txt"
+    },
+    {
+      "sha256": "da44951925ae485ff2ba743af929b11e7b0bac5b631084de18e1324b723d6f4d",
+      "path": "requirements.lock"
+    },
+    {
+      "sha256": "bd62df965af87f46d7903a4c86d2e43d7622bbcb6145a04466e29dc6c0e0c22b",
+      "path": "requirements.txt"
+    },
+    {
+      "sha256": "c918982a9825b26f9d920462144ab42e72d49f64a94e1d4ec5fe1674fa674d06",
+      "path": "tests/test_api.py"
+    },
+    {
+      "sha256": "93d76ec01736f259a649f24f05a575dc9d61512db664e33619c1895864e61a6d",
+      "path": "tests/test_core.py"
+    },
+    {
+      "sha256": "36cb1928903b01e4cd36bbf33e8166a34bde9b1ec1996830295caef23f9916a2",
+      "path": "tests/test_guard_review.py"
+    },
+    {
+      "sha256": "9f115130d2c94aad46c2a7356cd3a364703f2ec079d8f0a577d69acf813c1bcd",
+      "path": "tests/test_improvements_03.py"
+    },
+    {
+      "sha256": "ae887cdfbf9df4427cc1b389b651c2d233fb5116d9a360c01199cd1325099f1d",
+      "path": "tests/test_independent03.py"
+    },
+    {
+      "sha256": "29acf3115d6a6576e4623231658668254c3633666ef3660b206cf2f5587d7780",
+      "path": "tests/test_input_limits.py"
+    },
+    {
+      "sha256": "0a674fb62d9882b1f4d8efd2cd13b6d9fedb02387f9880c17c8ee7cf5ae66ae8",
+      "path": "tests/test_rebuild_interface.py"
+    },
+    {
+      "sha256": "3e1b7d1365e8ea04a43a76d5a5431692932f8a283fd3393b6f18dfaa1cabb850",
+      "path": "tests/test_review.py"
+    },
+    {
+      "sha256": "ecedd0d5c9208a193cea960d43f084b49acd0a0dcd20e709cb2c755675769fd3",
+      "path": "tools/smoke.py"
+    },
+    {
+      "sha256": "86f07fc62bae9ab741766be140bd103fc9fed1fa8e877a2eac5c231579d45843",
+      "path": "tools/test_ui.mjs"
+    },
+    {
+      "sha256": "7a69da2c87b8670c5f68cdec85fa2ce7a58e0b7700b5e681f151d53f826fbd6e",
+      "path": "tools/ui-test-dom.mjs"
+    }
+  ],
+  "source_stable_during_checks": true,
+  "source_bundle_sha256": "443d6bd978f56c6fb69926bf8beedf6312b80dccedd5a0c048df44e805703b9c",
+  "release_gates_not_claimed": [
+    "interactive browser review",
+    "dependency/secret audit",
+    "remote CI",
+    "GitHub publication",
+    "independent container backend-file hash inspection"
+  ],
+  "review_history": [
+    {
+      "reviewed_at_utc": "2026-10-16T22:31:04.733643+00:00",
+      "status": "ACCEPT_LOCAL_SCOPE",
+      "issues": [],
+      "checks": [
+        {
+          "name": "independent-pytest",
+          "exit_code": 0,
+          "evidence": "evidence/improvements-0.3/independent-pytest.txt"
+        },
+        {
+          "name": "independent-frontend",
+          "exit_code": 0,
+          "evidence": "evidence/improvements-0.3/independent-frontend.txt"
+        },
+        {
+          "name": "independent-bandit",
+          "exit_code": 0,
+          "evidence": "evidence/improvements-0.3/independent-bandit.txt"
+        }
+      ],
+      "source_bundle_sha256": "55dd4dc5a21237f96ddb5ecbd895ede37f7cb3c5060c435ff3c28596802455bc"
+    }
+  ],
+  "runtime_review": {
+    "status": "PASS",
+    "evidence": "evidence/improvements-0.3/independent-http.json"
+  },
+  "source_hashes_encoding": "Ordered records with sha256 before path; all per-file hashes unchanged. source_bundle_sha256 remains the SHA256 of canonical JSON path-to-hash mapping with sorted keys used at review time."
+}

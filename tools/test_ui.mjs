@@ -231,3 +231,78 @@ test("CSV ignores only blank physical lines and counts empty records toward row 
   assert.equal(parseCSV("x,y\n" + ",\n".repeat(5000)).length, 5000);
   assert.throws(() => parseCSV("x,y\n" + ",\n".repeat(5001)), /5000/);
 });
+
+test("Batch builder snapshots queries and renders macro defined-case denominators", async () => {
+  const { readFile: readLocal } = await import("node:fs/promises");
+  const { documentFromHTML } = await import("./ui-test-dom.mjs");
+  globalThis.document = documentFromHTML(
+    await readLocal(new URL("../app/index.html", import.meta.url), "utf8")
+  );
+  await import("../app/static/ui.mjs?feature=batch");
+  document.getElementById("sample").onclick();
+  document.getElementById("add-batch-query").onclick();
+  const originalAnswer = document.getElementById("answer").value;
+  document.getElementById("answer").value = "";
+  document.getElementById("answer").dispatch("input");
+  document.getElementById("batch-query-id").value = "query-2";
+  document.getElementById("add-batch-query").onclick();
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async (endpoint, options) => {
+    assert.equal(endpoint, "/batch");
+    const request = JSON.parse(options.body);
+    assert.equal(request.queries.length, 2);
+    assert.equal(request.queries[0].evaluation.answer, originalAnswer);
+    assert.equal(request.queries[1].evaluation.answer, "");
+    // Synthetic protocol fixture: UI formatting only; API math is tested separately in pytest.
+    return {
+      ok: true,
+      json: async () => ({
+        case_count: 2,
+        macro: {
+          recall_at_k: { value: 0.5, defined_cases: 1, total_cases: 2 }
+        },
+        cases: [],
+        limitations: []
+      })
+    };
+  };
+  try {
+    await document.getElementById("run-batch").onclick();
+    assert.match(document.getElementById("batch-results").textContent, /1\/2/);
+    assert.match(
+      document.getElementById("batch-results").textContent,
+      /recall_at_k/
+    );
+  } finally {
+    globalThis.fetch = originalFetch;
+    delete globalThis.document;
+  }
+});
+
+test("Delayed batch import cannot restore queries after clear", async () => {
+  const { readFile: readLocal } = await import("node:fs/promises");
+  const { documentFromHTML, deferred } = await import("./ui-test-dom.mjs");
+  globalThis.document = documentFromHTML(
+    await readLocal(new URL("../app/index.html", import.meta.url), "utf8")
+  );
+  await import("../app/static/ui.mjs?feature=batch-race");
+  const read = deferred();
+  const pending = document
+    .getElementById("batch-import")
+    .onchange({ target: { files: [{ size: 100, text: () => read.promise }] } });
+  document.getElementById("clear-batch").onclick();
+  const status = document.getElementById("status").textContent;
+  read.resolve(
+    await readLocal(
+      new URL("../examples/synthetic-batch.json", import.meta.url),
+      "utf8"
+    )
+  );
+  await pending;
+  assert.equal(document.getElementById("status").textContent, status);
+  assert.doesNotMatch(
+    document.getElementById("batch-preview").textContent,
+    /synthetic-hit/
+  );
+  delete globalThis.document;
+});

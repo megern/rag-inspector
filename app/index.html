@@ -8,7 +8,7 @@
   </head>
   <body>
     <header>
-      <small>Retrieval and answer evaluation · v0.2.0</small>
+      <small>Retrieval and answer evaluation · v0.3.0</small>
       <h1>RAG Inspector</h1>
       <p>
         Inspect retrieval against your relevance labels, then check answer
@@ -63,6 +63,36 @@
             <button id="export-input">Export query setup</button
             ><button id="export-report">Export evaluation report</button>
           </div>
+        </section>
+        <section class="panel wide">
+          <h2>Labeled query batch</h2>
+          <p class="hint">
+            Add snapshots of the single-query editor above, or import a batch
+            JSON. Up to 20 unique query IDs and 500,000 total text characters.
+            Macro averages exclude null values and show their denominators.
+          </p>
+          <label
+            >Query ID for current editor<input
+              id="batch-query-id"
+              value="query-1"
+          /></label>
+          <div class="actions">
+            <button id="add-batch-query">Add current query to batch</button
+            ><button id="clear-batch">Clear batch</button>
+          </div>
+          <label
+            >Import batch JSON<input
+              id="batch-import"
+              type="file"
+              accept=".json,application/json"
+          /></label>
+          <div id="batch-preview">No batch queries.</div>
+          <div class="actions">
+            <button id="run-batch" class="primary">Evaluate batch</button
+            ><button id="export-batch-input">Export batch setup</button
+            ><button id="export-batch-report">Export batch report</button>
+          </div>
+          <div id="batch-results"></div>
         </section>
         <section class="panel wide">
           <h2>Evaluation results</h2>

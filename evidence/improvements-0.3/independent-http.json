@@ -1,0 +1,75 @@
+{
+  "application": "rag-inspector",
+  "reviewed_at_utc": "2026-10-17T02:36:44.067165+00:00",
+  "base_url": "http://127.0.0.1:18211",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected_source_sha256": "22cf8431c3fc375dfdbd2f304ed77273592f149fe201c40f0b43097aae74f34a",
+      "served_sha256": "22cf8431c3fc375dfdbd2f304ed77273592f149fe201c40f0b43097aae74f34a",
+      "matches": true
+    },
+    {
+      "path": "/guide",
+      "status": 200,
+      "expected_source_sha256": "9ef190ac5c708187c3c08177dd254281de613bc1356fd8182e45e6a5b77aaa8b",
+      "served_sha256": "9ef190ac5c708187c3c08177dd254281de613bc1356fd8182e45e6a5b77aaa8b",
+      "matches": true
+    },
+    {
+      "path": "/assets/ui.mjs",
+      "status": 200,
+      "expected_source_sha256": "4405036de35e774db5e54c70e42ea1d2caaa7d8fd5865d1b8afe9717f147adc8",
+      "served_sha256": "4405036de35e774db5e54c70e42ea1d2caaa7d8fd5865d1b8afe9717f147adc8",
+      "matches": true
+    },
+    {
+      "path": "/assets/common.mjs",
+      "status": 200,
+      "expected_source_sha256": "6410a7d942d231f320cf67bad5b575793d40db2c025d66d01a6eb4f5effef3a9",
+      "served_sha256": "6410a7d942d231f320cf67bad5b575793d40db2c025d66d01a6eb4f5effef3a9",
+      "matches": true
+    },
+    {
+      "path": "/assets/style.css",
+      "status": 200,
+      "expected_source_sha256": "31edaeb85459bc32652a37b11a7f5c5f716f16915fde7fe607f1ac9e3b7367c3",
+      "served_sha256": "31edaeb85459bc32652a37b11a7f5c5f716f16915fde7fe607f1ac9e3b7367c3",
+      "matches": true
+    }
+  ],
+  "source_match_scope": "Exact bytes for served index, guide and ui/common/style assets; API version and functional new-feature behavior. This does not expose or independently hash container backend Python files.",
+  "feature_probe": {
+    "probe": "macro averages exclude undefined metrics, requested-k precision preserved",
+    "case_count": 2,
+    "macro": {
+      "precision_at_k": {
+        "value": 0.25,
+        "defined_cases": 2,
+        "total_cases": 2
+      },
+      "recall_at_k": {
+        "value": 0.5,
+        "defined_cases": 1,
+        "total_cases": 2
+      },
+      "reciprocal_rank_at_k": {
+        "value": 0.5,
+        "defined_cases": 2,
+        "total_cases": 2
+      },
+      "reference_token_f1": {
+        "value": 0.25,
+        "defined_cases": 2,
+        "total_cases": 2
+      },
+      "lexical_groundedness": {
+        "value": 0.6666666666666666,
+        "defined_cases": 1,
+        "total_cases": 2
+      }
+    }
+  },
+  "status": "PASS"
+}
