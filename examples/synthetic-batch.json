@@ -1,0 +1,32 @@
+{
+  "queries": [
+    {
+      "id": "synthetic-hit",
+      "evaluation": {
+        "retrieved": [
+          {
+            "id": "doc-1",
+            "text": "Synthetic example: the boat is blue."
+          }
+        ],
+        "relevant_ids": [
+          "doc-1",
+          "missing-doc"
+        ],
+        "answer": "The boat is blue.",
+        "reference_answer": "The boat is blue.",
+        "k": 2
+      }
+    },
+    {
+      "id": "synthetic-empty",
+      "evaluation": {
+        "retrieved": [],
+        "relevant_ids": [],
+        "answer": "",
+        "reference_answer": "",
+        "k": 5
+      }
+    }
+  ]
+}

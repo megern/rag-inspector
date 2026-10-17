@@ -1,0 +1,100 @@
+TAP version 13
+# Subtest: CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+ok 1 - CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+  ---
+  duration_ms: 1.364125
+  type: 'test'
+  ...
+# Subtest: CSV rejects ambiguity and reports the physical data-row position
+ok 2 - CSV rejects ambiguity and reports the physical data-row position
+  ---
+  duration_ms: 0.27825
+  type: 'test'
+  ...
+# Subtest: Numeric inference preserves identifiers and rejects overflow
+ok 3 - Numeric inference preserves identifiers and rejects overflow
+  ---
+  duration_ms: 0.233041
+  type: 'test'
+  ...
+# Subtest: CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+ok 4 - CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+  ---
+  duration_ms: 0.117125
+  type: 'test'
+  ...
+# Subtest: Untrusted values are assigned to textContent, never interpreted as HTML
+ok 5 - Untrusted values are assigned to textContent, never interpreted as HTML
+  ---
+  duration_ms: 0.079167
+  type: 'test'
+  ...
+# Subtest: File size check happens before reading and API validation paths are actionable
+ok 6 - File size check happens before reading and API validation paths are actionable
+  ---
+  duration_ms: 0.160875
+  type: 'test'
+  ...
+# Subtest: Delayed actual UI file import cannot replace a newer synthetic sample
+ok 7 - Delayed actual UI file import cannot replace a newer synthetic sample
+  ---
+  duration_ms: 6.276542
+  type: 'test'
+  ...
+# Subtest: Late actual UI file rejection cannot replace newer status
+ok 8 - Late actual UI file rejection cannot replace newer status
+  ---
+  duration_ms: 1.267833
+  type: 'test'
+  ...
+# Subtest: Actual UI accepts an unsuperseded JSON file import
+ok 9 - Actual UI accepts an unsuperseded JSON file import
+  ---
+  duration_ms: 2.206916
+  type: 'test'
+  ...
+# Subtest: Delayed actual UI file import cannot replace a manual field edit
+ok 10 - Delayed actual UI file import cannot replace a manual field edit
+  ---
+  duration_ms: 1.53125
+  type: 'test'
+  ...
+# Subtest: CSV preserves explicit all-empty records at the beginning and end
+ok 11 - CSV preserves explicit all-empty records at the beginning and end
+  ---
+  duration_ms: 0.225
+  type: 'test'
+  ...
+# Subtest: CSV preserves quoted empty single/multiple fields and multiline values
+ok 12 - CSV preserves quoted empty single/multiple fields and multiline values
+  ---
+  duration_ms: 0.194667
+  type: 'test'
+  ...
+# Subtest: CSV ignores only blank physical lines and counts empty records toward row bounds
+ok 13 - CSV ignores only blank physical lines and counts empty records toward row bounds
+  ---
+  duration_ms: 3.940209
+  type: 'test'
+  ...
+# Subtest: Batch builder snapshots queries and renders macro defined-case denominators
+ok 14 - Batch builder snapshots queries and renders macro defined-case denominators
+  ---
+  duration_ms: 31.286792
+  type: 'test'
+  ...
+# Subtest: Delayed batch import cannot restore queries after clear
+ok 15 - Delayed batch import cannot restore queries after clear
+  ---
+  duration_ms: 2.042458
+  type: 'test'
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 91.837667

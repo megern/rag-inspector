@@ -1,0 +1,29 @@
+{
+  "synthetic": true,
+  "http_status": 200,
+  "invalid_input_status": 422,
+  "latency_ms": [
+    2.9200841672718525,
+    2.4690411519259214,
+    3.212790936231613
+  ],
+  "result": {
+    "retrieval": {
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "reciprocal_rank_at_k": 1.0,
+      "returned_documents": 2,
+      "relevant_count": 1
+    },
+    "answer": {
+      "reference_token_f1": 1.0,
+      "lexical_groundedness": 1.0,
+      "unsupported_tokens": []
+    },
+    "limitations": [
+      "Lexical overlap is not semantic correctness or factual entailment.",
+      "Precision uses requested k even when fewer documents are returned.",
+      "Empty gold relevance makes recall undefined (null)."
+    ]
+  }
+}

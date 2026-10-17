@@ -5,6 +5,7 @@ import {
   metric,
   table,
   analyze,
+  download,
   status,
   readFile,
   resultDetails,
@@ -14,6 +15,8 @@ import {
   number
 } from "./common.mjs";
 let revision = 0;
+let batch = [],
+  batchReport = null;
 let report = null,
   source = "manual input";
 function docs() {
@@ -37,6 +40,8 @@ function input() {
 function invalidate() {
   revision++;
   report = null;
+  batchReport = null;
+  clear($("batch-results"));
   clear($("results"));
   $("results").append(
     el("p", "Query setup changed. Evaluate to refresh the results.")
@@ -263,3 +268,148 @@ $("run").onclick = async () => {
 };
 setupDownloads(input, () => report, "rag-inspector");
 drawDocs([{ id: "doc-1", text: "" }]);
+
+function drawBatch() {
+  clear($("batch-preview"));
+  table(
+    $("batch-preview"),
+    ["Query ID", "Documents", "Gold IDs", "Requested k"],
+    batch.map((query) => [
+      query.id,
+      query.evaluation.retrieved.length,
+      query.evaluation.relevant_ids.length,
+      query.evaluation.k
+    ])
+  );
+}
+$("add-batch-query").onclick = () => {
+  try {
+    const id = $("batch-query-id").value.trim();
+    if (!id || id.length > 100) throw Error("Query ID needs 1–100 characters.");
+    if (batch.length >= 20 || batch.some((query) => query.id === id))
+      throw Error("Batch allows at most 20 queries with unique IDs.");
+    batch.push({ id, evaluation: input() });
+    invalidate();
+    drawBatch();
+    status(
+      "Current query snapshot added. Later editor changes do not modify the saved query."
+    );
+  } catch (error) {
+    status(error.message, true);
+  }
+};
+$("clear-batch").onclick = () => {
+  batch = [];
+  invalidate();
+  drawBatch();
+  status("Batch cleared.");
+};
+$("batch-import").onchange = async (event) => {
+  invalidate();
+  const importRevision = revision;
+  try {
+    const text = await readFile(event.target.files[0]);
+    if (revision !== importRevision) return;
+    const value = JSON.parse(text);
+    const queries = Array.isArray(value) ? value : value.queries;
+    if (!Array.isArray(queries) || queries.length < 1 || queries.length > 20)
+      throw Error("Import needs 1–20 queries.");
+    if (
+      queries.some(
+        (query) =>
+          !query ||
+          typeof query.id !== "string" ||
+          !query.id.trim() ||
+          !query.evaluation ||
+          !Array.isArray(query.evaluation.retrieved) ||
+          !Array.isArray(query.evaluation.relevant_ids)
+      )
+    )
+      throw Error(
+        "Each query needs id and evaluation with retrieved/relevant_ids arrays. See the guide."
+      );
+    if (new Set(queries.map((query) => query.id)).size !== queries.length)
+      throw Error("Batch query IDs must be unique.");
+    batch = queries;
+    drawBatch();
+    status(
+      "Batch imported; provenance unverified. The API validates all query fields when evaluated."
+    );
+  } catch (error) {
+    if (revision === importRevision) status(error.message, true);
+  }
+};
+$("run-batch").onclick = async () => {
+  invalidate();
+  const requestRevision = revision;
+  $("run-batch").disabled = true;
+  try {
+    if (!batch.length) throw Error("Add or import a query batch first.");
+    const request = { queries: batch };
+    const result = await analyze(request, "/batch");
+    if (revision !== requestRevision) return;
+    batchReport = {
+      application: "rag-inspector",
+      version: "0.3.0",
+      generated_at: new Date().toISOString(),
+      input: request,
+      source: "user-assembled/imported batch; provenance unverified",
+      result
+    };
+    const root = $("batch-results");
+    root.append(el("h3", "Macro metrics (equal weight per defined query)"));
+    table(
+      root,
+      ["Metric", "Mean", "Defined / total queries"],
+      Object.entries(result.macro).map(([name, metric]) => [
+        name,
+        number(metric.value),
+        `${metric.defined_cases}/${metric.total_cases}`
+      ])
+    );
+    root.append(el("h3", "Per-query evaluation"));
+    table(
+      root,
+      [
+        "Query ID",
+        "Precision @ k",
+        "Recall @ k",
+        "Reciprocal rank",
+        "Token F1",
+        "Lexical groundedness"
+      ],
+      result.cases.map((query) => [
+        query.id,
+        percent(query.result.retrieval.precision_at_k),
+        percent(query.result.retrieval.recall_at_k),
+        number(query.result.retrieval.reciprocal_rank_at_k),
+        percent(query.result.answer.reference_token_f1),
+        percent(query.result.answer.lexical_groundedness)
+      ])
+    );
+    limitations(root, result.limitations);
+    resultDetails(root, result);
+    status(
+      `Evaluated ${result.case_count} queries. Check defined-case counts before interpreting averages.`
+    );
+  } catch (error) {
+    if (revision === requestRevision) status(error.message, true);
+  } finally {
+    $("run-batch").disabled = false;
+  }
+};
+$("export-batch-input").onclick = () =>
+  download(
+    "rag-inspector-batch-input.json",
+    JSON.stringify({ queries: batch }, null, 2)
+  );
+$("export-batch-report").onclick = () => {
+  if (!batchReport) {
+    status("Evaluate the current batch before exporting its report.", true);
+    return;
+  }
+  download(
+    "rag-inspector-batch-report.json",
+    JSON.stringify(batchReport, null, 2)
+  );
+};
