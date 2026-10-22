@@ -1,10 +1,11 @@
+from .access import AccessControl
 from pathlib import Path
 from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, PlainTextResponse
 from fastapi.staticfiles import StaticFiles
 from .core import EvaluationRequest, BatchRequest, analyze, evaluate_batch
 
-app = FastAPI(title="RAG Inspector", version="0.3.0")
+app = FastAPI(title="RAG Inspector", version="0.4.0")
 
 
 @app.get("/health")
@@ -40,3 +41,14 @@ def user_guide():
 @app.post("/batch")
 def run_batch(request: BatchRequest):
     return evaluate_batch(request)
+
+
+from .core import PairedBatchRequest, compare_batches
+
+
+@app.post("/compare-batches")
+def run_paired_comparison(request: PairedBatchRequest):
+    return compare_batches(request)
+
+
+app.add_middleware(AccessControl)

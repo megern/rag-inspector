@@ -1,0 +1,65 @@
+{
+  "baseline": {
+    "queries": [
+      {
+        "id": "synthetic-query",
+        "evaluation": {
+          "retrieved": [
+            {
+              "id": "doc-b",
+              "text": "Synthetic: birds are green."
+            },
+            {
+              "id": "doc-a",
+              "text": "Synthetic: boats are blue."
+            }
+          ],
+          "relevant_ids": [
+            "doc-a",
+            "doc-b"
+          ],
+          "relevance_grades": {
+            "doc-a": 3,
+            "doc-b": 1
+          },
+          "answer": "Green.",
+          "reference_answer": "Blue.",
+          "k": 2
+        }
+      }
+    ]
+  },
+  "candidate": {
+    "queries": [
+      {
+        "id": "synthetic-query",
+        "evaluation": {
+          "retrieved": [
+            {
+              "id": "doc-a",
+              "text": "Synthetic: boats are blue."
+            },
+            {
+              "id": "doc-b",
+              "text": "Synthetic: birds are green."
+            }
+          ],
+          "relevant_ids": [
+            "doc-a",
+            "doc-b"
+          ],
+          "relevance_grades": {
+            "doc-a": 3,
+            "doc-b": 1
+          },
+          "answer": "Blue.",
+          "reference_answer": "Blue.",
+          "k": 2
+        }
+      }
+    ]
+  },
+  "bootstrap_iterations": 500,
+  "confidence": 0.95,
+  "seed": 42
+}
