@@ -1,0 +1,23 @@
+{
+  "retrieved": [
+    {
+      "id": "doc-b",
+      "text": "Synthetic: birds are green."
+    },
+    {
+      "id": "doc-a",
+      "text": "Synthetic: boats are blue."
+    }
+  ],
+  "relevant_ids": [
+    "doc-a",
+    "doc-b"
+  ],
+  "relevance_grades": {
+    "doc-a": 3,
+    "doc-b": 1
+  },
+  "answer": "Green.",
+  "reference_answer": "Blue.",
+  "k": 2
+}

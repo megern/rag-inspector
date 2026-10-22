@@ -306,3 +306,74 @@ test("Delayed batch import cannot restore queries after clear", async () => {
   );
   delete globalThis.document;
 });
+
+test("Paired comparison UI submits matching graded gold and displays paired CI denominators", async () => {
+  const { readFile: local } = await import("node:fs/promises");
+  const { documentFromHTML } = await import("./ui-test-dom.mjs");
+  globalThis.document = documentFromHTML(
+    await local(new URL("../app/index.html", import.meta.url), "utf8")
+  );
+  await import("../app/static/ui.mjs?feature=paired04");
+  document.getElementById("paired-sample").onclick();
+  const original = globalThis.fetch;
+  globalThis.fetch = async (path, options) => {
+    assert.equal(path, "/compare-batches");
+    const request = JSON.parse(options.body);
+    assert.deepEqual(
+      request.baseline.queries[0].evaluation.relevance_grades,
+      request.candidate.queries[0].evaluation.relevance_grades
+    );
+    assert.equal(request.bootstrap_iterations, 500);
+    return {
+      ok: true,
+      json: async () => ({
+        metrics: {
+          ndcg_at_k: {
+            baseline_mean: 0.6,
+            candidate_mean: 1,
+            mean_delta: 0.4,
+            defined_pairs: 1,
+            total_pairs: 1,
+            bootstrap_ci: { lower: 0.4, upper: 0.4 }
+          }
+        },
+        cases: [],
+        limitations: ["Exploratory paired intervals."]
+      })
+    };
+  };
+  try {
+    await document.getElementById("run-paired").onclick();
+    const text = document.getElementById("paired-results").textContent;
+    assert.match(text, /1\/1/);
+    assert.match(text, /0.4 to 0.4/);
+    assert.match(text, /Exploratory paired intervals/);
+  } finally {
+    globalThis.fetch = original;
+    delete globalThis.document;
+  }
+});
+
+test("Late paired-file import cannot replace a newer comparison example", async () => {
+  const { readFile: local } = await import("node:fs/promises");
+  const { documentFromHTML, deferred } = await import("./ui-test-dom.mjs");
+  globalThis.document = documentFromHTML(
+    await local(new URL("../app/index.html", import.meta.url), "utf8")
+  );
+  await import("../app/static/ui.mjs?feature=paired-import04");
+  const read = deferred();
+  const pending = document
+    .getElementById("paired-import")
+    .onchange({ target: { files: [{ size: 100, text: () => read.promise }] } });
+  document.getElementById("paired-sample").onclick();
+  const snapshot = document.getElementById("paired-baseline").value;
+  read.resolve(
+    await local(
+      new URL("../examples/synthetic-paired.json", import.meta.url),
+      "utf8"
+    )
+  );
+  await pending;
+  assert.equal(document.getElementById("paired-baseline").value, snapshot);
+  delete globalThis.document;
+});

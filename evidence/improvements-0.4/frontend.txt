@@ -1,0 +1,160 @@
+TAP version 13
+# Subtest: Default page does not attach a credential or change request bodies
+ok 1 - Default page does not attach a credential or change request bodies
+  ---
+  duration_ms: 78.600792
+  type: 'test'
+  ...
+# Subtest: Actual key form affects same-origin requests only and clears its field
+ok 2 - Actual key form affects same-origin requests only and clears its field
+  ---
+  duration_ms: 16.446667
+  type: 'test'
+  ...
+# Subtest: Explicit authorization and Request headers are preserved
+ok 3 - Explicit authorization and Request headers are preserved
+  ---
+  duration_ms: 3.443625
+  type: 'test'
+  ...
+# Subtest: Clear and page reload remove the credential
+ok 4 - Clear and page reload remove the credential
+  ---
+  duration_ms: 2.746167
+  type: 'test'
+  ...
+# Subtest: Cross-constructor external Request must never receive the server access key
+ok 5 - Cross-constructor external Request must never receive the server access key
+  ---
+  duration_ms: 97.082667
+  type: 'test'
+  ...
+# Subtest: Protocol-relative external URL and suffix-lookalike origin never receive key
+ok 6 - Protocol-relative external URL and suffix-lookalike origin never receive key
+  ---
+  duration_ms: 2.518041
+  type: 'test'
+  ...
+# Subtest: Own URL property on a genuine external Request cannot spoof its destination
+ok 7 - Own URL property on a genuine external Request cannot spoof its destination
+  ---
+  duration_ms: 2.375666
+  type: 'test'
+  ...
+# Subtest: Own href property on external URL and unknown objects cannot obtain implicit credential
+ok 8 - Own href property on external URL and unknown objects cannot obtain implicit credential
+  ---
+  duration_ms: 1.557666
+  type: 'test'
+  ...
+# Subtest: CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+ok 9 - CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+  ---
+  duration_ms: 8.321333
+  type: 'test'
+  ...
+# Subtest: CSV rejects ambiguity and reports the physical data-row position
+ok 10 - CSV rejects ambiguity and reports the physical data-row position
+  ---
+  duration_ms: 0.621709
+  type: 'test'
+  ...
+# Subtest: Numeric inference preserves identifiers and rejects overflow
+ok 11 - Numeric inference preserves identifiers and rejects overflow
+  ---
+  duration_ms: 1.130792
+  type: 'test'
+  ...
+# Subtest: CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+ok 12 - CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+  ---
+  duration_ms: 0.514708
+  type: 'test'
+  ...
+# Subtest: Untrusted values are assigned to textContent, never interpreted as HTML
+ok 13 - Untrusted values are assigned to textContent, never interpreted as HTML
+  ---
+  duration_ms: 2.635792
+  type: 'test'
+  ...
+# Subtest: File size check happens before reading and API validation paths are actionable
+ok 14 - File size check happens before reading and API validation paths are actionable
+  ---
+  duration_ms: 0.321833
+  type: 'test'
+  ...
+# Subtest: Delayed actual UI file import cannot replace a newer synthetic sample
+ok 15 - Delayed actual UI file import cannot replace a newer synthetic sample
+  ---
+  duration_ms: 48.367042
+  type: 'test'
+  ...
+# Subtest: Late actual UI file rejection cannot replace newer status
+ok 16 - Late actual UI file rejection cannot replace newer status
+  ---
+  duration_ms: 17.662791
+  type: 'test'
+  ...
+# Subtest: Actual UI accepts an unsuperseded JSON file import
+ok 17 - Actual UI accepts an unsuperseded JSON file import
+  ---
+  duration_ms: 25.131417
+  type: 'test'
+  ...
+# Subtest: Delayed actual UI file import cannot replace a manual field edit
+ok 18 - Delayed actual UI file import cannot replace a manual field edit
+  ---
+  duration_ms: 27.104458
+  type: 'test'
+  ...
+# Subtest: CSV preserves explicit all-empty records at the beginning and end
+ok 19 - CSV preserves explicit all-empty records at the beginning and end
+  ---
+  duration_ms: 3.351875
+  type: 'test'
+  ...
+# Subtest: CSV preserves quoted empty single/multiple fields and multiline values
+ok 20 - CSV preserves quoted empty single/multiple fields and multiline values
+  ---
+  duration_ms: 0.431375
+  type: 'test'
+  ...
+# Subtest: CSV ignores only blank physical lines and counts empty records toward row bounds
+ok 21 - CSV ignores only blank physical lines and counts empty records toward row bounds
+  ---
+  duration_ms: 26.760459
+  type: 'test'
+  ...
+# Subtest: Batch builder snapshots queries and renders macro defined-case denominators
+ok 22 - Batch builder snapshots queries and renders macro defined-case denominators
+  ---
+  duration_ms: 107.687625
+  type: 'test'
+  ...
+# Subtest: Delayed batch import cannot restore queries after clear
+ok 23 - Delayed batch import cannot restore queries after clear
+  ---
+  duration_ms: 11.724917
+  type: 'test'
+  ...
+# Subtest: Paired comparison UI submits matching graded gold and displays paired CI denominators
+ok 24 - Paired comparison UI submits matching graded gold and displays paired CI denominators
+  ---
+  duration_ms: 10.825709
+  type: 'test'
+  ...
+# Subtest: Late paired-file import cannot replace a newer comparison example
+ok 25 - Late paired-file import cannot replace a newer comparison example
+  ---
+  duration_ms: 13.254292
+  type: 'test'
+  ...
+1..25
+# tests 25
+# suites 0
+# pass 25
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 495.819542

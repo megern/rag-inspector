@@ -1,0 +1,95 @@
+TAP version 13
+# Subtest: CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+ok 1 - CSV supports BOM, escaped quotes, embedded newlines, CRLF and empty cells
+  ---
+  duration_ms: 16.076834
+  ...
+# Subtest: CSV rejects ambiguity and reports the physical data-row position
+ok 2 - CSV rejects ambiguity and reports the physical data-row position
+  ---
+  duration_ms: 1.034583
+  ...
+# Subtest: Numeric inference preserves identifiers and rejects overflow
+ok 3 - Numeric inference preserves identifiers and rejects overflow
+  ---
+  duration_ms: 0.818042
+  ...
+# Subtest: CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+ok 4 - CSV export neutralizes formula cells including whitespace prefixes; negatives stay numeric
+  ---
+  duration_ms: 0.357416
+  ...
+# Subtest: Untrusted values are assigned to textContent, never interpreted as HTML
+ok 5 - Untrusted values are assigned to textContent, never interpreted as HTML
+  ---
+  duration_ms: 0.442875
+  ...
+# Subtest: File size check happens before reading and API validation paths are actionable
+ok 6 - File size check happens before reading and API validation paths are actionable
+  ---
+  duration_ms: 0.727084
+  ...
+# Subtest: Delayed actual UI file import cannot replace a newer synthetic sample
+ok 7 - Delayed actual UI file import cannot replace a newer synthetic sample
+  ---
+  duration_ms: 60.27975
+  ...
+# Subtest: Late actual UI file rejection cannot replace newer status
+ok 8 - Late actual UI file rejection cannot replace newer status
+  ---
+  duration_ms: 10.361708
+  ...
+# Subtest: Actual UI accepts an unsuperseded JSON file import
+ok 9 - Actual UI accepts an unsuperseded JSON file import
+  ---
+  duration_ms: 12.190875
+  ...
+# Subtest: Delayed actual UI file import cannot replace a manual field edit
+ok 10 - Delayed actual UI file import cannot replace a manual field edit
+  ---
+  duration_ms: 7.695625
+  ...
+# Subtest: CSV preserves explicit all-empty records at the beginning and end
+ok 11 - CSV preserves explicit all-empty records at the beginning and end
+  ---
+  duration_ms: 0.393959
+  ...
+# Subtest: CSV preserves quoted empty single/multiple fields and multiline values
+ok 12 - CSV preserves quoted empty single/multiple fields and multiline values
+  ---
+  duration_ms: 0.1365
+  ...
+# Subtest: CSV ignores only blank physical lines and counts empty records toward row bounds
+ok 13 - CSV ignores only blank physical lines and counts empty records toward row bounds
+  ---
+  duration_ms: 80.9055
+  ...
+# Subtest: Batch builder snapshots queries and renders macro defined-case denominators
+ok 14 - Batch builder snapshots queries and renders macro defined-case denominators
+  ---
+  duration_ms: 101.125333
+  ...
+# Subtest: Delayed batch import cannot restore queries after clear
+ok 15 - Delayed batch import cannot restore queries after clear
+  ---
+  duration_ms: 43.016083
+  ...
+# Subtest: Paired comparison UI submits matching graded gold and displays paired CI denominators
+ok 16 - Paired comparison UI submits matching graded gold and displays paired CI denominators
+  ---
+  duration_ms: 10.06275
+  ...
+# Subtest: Late paired-file import cannot replace a newer comparison example
+ok 17 - Late paired-file import cannot replace a newer comparison example
+  ---
+  duration_ms: 12.000459
+  ...
+1..17
+# tests 17
+# suites 0
+# pass 17
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 625.529833

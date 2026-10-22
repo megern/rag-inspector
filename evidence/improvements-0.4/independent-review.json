@@ -1,0 +1,246 @@
+{
+  "version": "0.4.0",
+  "reviewer": "Independent AI scientific and QA reviewer; different agent from application author",
+  "reviewed_at_utc": "2026-10-22T17:54:17.195978+00:00",
+  "status": "TESTED",
+  "release_recommendation": "Accept bounded documented local functionality subject to root remaining infrastructure, CI and publication gates.",
+  "confidence": "Moderate for bounded local research use; no external certification.",
+  "scientific_assessment": "Known-value graded NDCG uses exponential gain and ideal ranking from all gold IDs truncated to k. AP uses min(k, distinct positive gold), including when fewer documents return. Paired comparison aligns query IDs, requires common gold/reference/k, excludes undefined pairs and bootstraps query deltas reproducibly. Empty gold remains null. Small-set bootstrap intervals and lexical answer scores are exploratory, not causal, semantic or deployment guarantees.",
+  "issues": [],
+  "checks": [
+    {
+      "name": "independent-pytest",
+      "command": [
+        "-m",
+        "pytest",
+        "-q"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.4/independent-pytest.txt"
+    },
+    {
+      "name": "independent-node",
+      "command": [
+        "node",
+        "--test",
+        "tools/test_ui.mjs"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.4/independent-node.txt"
+    },
+    {
+      "name": "independent-bandit",
+      "command": [
+        "-r",
+        "app",
+        "-ll"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/improvements-0.4/independent-bandit.txt"
+    }
+  ],
+  "runtime_review": {
+    "status": "PASS",
+    "evidence": "evidence/improvements-0.4/independent-http.json",
+    "backend_freshness": {
+      "status": "PASS",
+      "root_proof_path": "outputs/evidence/improvements-0.4/runtime-source.json",
+      "root_proof_sha256": "e5392418dda519a74650eb84e06dd5fca9114b5cfb7b5ed4a8f1b719ba91d3b8",
+      "container": "993b5bbe5777c7bf1242ba7b8cc8a1a662d9d12a30e340b57f6d9a4ab3378a93",
+      "application_files_verified": 11,
+      "complete_app_tree_matches": true,
+      "image_id": "sha256:786629d7cb8db495c4ec80e932dbcd52aa86c2d3d65f5a23be4e76f012f4e16e",
+      "native_health": "healthy",
+      "root_docker_validated_at_utc": "2026-10-22T17:51:45.532963+00:00",
+      "independently_verified_at_utc": "2026-10-22T17:54:17.195978+00:00",
+      "attribution": "Root collected private container bytes and native Docker-health evidence. Independent reviewer compared the full app mapping against current files, matched container/image identity and checked fresh actual HTTP/public bytes; private bytes were not collected by this reviewer."
+    }
+  },
+  "source_hashes_sha256": [
+    {
+      "sha256": "ade48d79e74f366ebf724b237ad19a484cabb46a92c295fb096367ca77b1fd18",
+      "path": ".github/workflows/ci.yml"
+    },
+    {
+      "sha256": "88f17372fdd7608502821783b4b09ce6964e4e746fd1635e98ccadfe71ed5adb",
+      "path": "Dockerfile"
+    },
+    {
+      "sha256": "7da5deefb425245ad31e2f6d67d47f3e191229647243bf4e7da91c0990958a77",
+      "path": "README.md"
+    },
+    {
+      "sha256": "d42ca883813dc3d54ce3d1cea269d8a649113b438eff0608423ebb73daa7d7a9",
+      "path": "app/USER_GUIDE.md"
+    },
+    {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "app/__init__.py"
+    },
+    {
+      "sha256": "bc340ac2d8658f547b2a58012834d302482fea40a8773ba0363b4a1b2edf251c",
+      "path": "app/access.py"
+    },
+    {
+      "sha256": "a5644cb9acfb06ce05245657228900ca71497cef5c35f9d423a18d8d631b201f",
+      "path": "app/core.py"
+    },
+    {
+      "sha256": "d1eda2150e58503114c6cf4ba36d5958aa7e2cfbb496fc0d8026b5c9da4beb77",
+      "path": "app/guard.py"
+    },
+    {
+      "sha256": "e3b9d54f01bdd74973014f6dec9c4d4662fd9237a7f6ba3e6f9929c04b7879cb",
+      "path": "app/index.html"
+    },
+    {
+      "sha256": "82c27014a2283fc120ebb530d5378512f360fb3942af0e7109b0444f068ccf33",
+      "path": "app/main.py"
+    },
+    {
+      "sha256": "f7a4a09a26b83052edc956cf886195c0f4687b0661a166320f460f3e3ccad0d5",
+      "path": "app/static/access.js"
+    },
+    {
+      "sha256": "29e972fbfca1660ede9ac6681e6a978446fbdec6b1956d77eeda45797c774865",
+      "path": "app/static/common.mjs"
+    },
+    {
+      "sha256": "31edaeb85459bc32652a37b11a7f5c5f716f16915fde7fe607f1ac9e3b7367c3",
+      "path": "app/static/style.css"
+    },
+    {
+      "sha256": "b484e731be1648c3bdebbf20a7697f700b61e32da9d333b45155a500240b6670",
+      "path": "app/static/ui.mjs"
+    },
+    {
+      "sha256": "12fe193035704ca340103731c0e2a572835baa061bb982ea65667d4806979993",
+      "path": "compose.yaml"
+    },
+    {
+      "sha256": "e3d7a27dcd6b869601c33afc9532b9ea02c14387b8ff735cbdc4144c75544ddb",
+      "path": "docs/OPERATIONS.md"
+    },
+    {
+      "sha256": "d42ca883813dc3d54ce3d1cea269d8a649113b438eff0608423ebb73daa7d7a9",
+      "path": "docs/USER_GUIDE.md"
+    },
+    {
+      "sha256": "16b28217881363851eb7f7fd795ffb48974a91f336e3ebd7574b1e830825cf39",
+      "path": "pyproject.toml"
+    },
+    {
+      "sha256": "57bae40c1eb3f88a5537422ada685ac3f5fd58d8dd24fcd399f09f464ee70ea0",
+      "path": "requirements-dev.lock"
+    },
+    {
+      "sha256": "cc2d915f3530f2b16ab605d633b94e6c8784ee70f799daf639dd30deef2361de",
+      "path": "requirements-dev.txt"
+    },
+    {
+      "sha256": "da44951925ae485ff2ba743af929b11e7b0bac5b631084de18e1324b723d6f4d",
+      "path": "requirements.lock"
+    },
+    {
+      "sha256": "bd62df965af87f46d7903a4c86d2e43d7622bbcb6145a04466e29dc6c0e0c22b",
+      "path": "requirements.txt"
+    },
+    {
+      "sha256": "d8f870bb86183aab1edff1987308c53f2e912daf5760189a681bd81a52db2ee5",
+      "path": "tests/test_access.py"
+    },
+    {
+      "sha256": "0c3489dda78f899f6e12bd9eaa05359c7d284b1ec90cde3a302d56f74c783cb0",
+      "path": "tests/test_access_independent.py"
+    },
+    {
+      "sha256": "c918982a9825b26f9d920462144ab42e72d49f64a94e1d4ec5fe1674fa674d06",
+      "path": "tests/test_api.py"
+    },
+    {
+      "sha256": "93d76ec01736f259a649f24f05a575dc9d61512db664e33619c1895864e61a6d",
+      "path": "tests/test_core.py"
+    },
+    {
+      "sha256": "36cb1928903b01e4cd36bbf33e8166a34bde9b1ec1996830295caef23f9916a2",
+      "path": "tests/test_guard_review.py"
+    },
+    {
+      "sha256": "9f115130d2c94aad46c2a7356cd3a364703f2ec079d8f0a577d69acf813c1bcd",
+      "path": "tests/test_improvements_03.py"
+    },
+    {
+      "sha256": "881eb887b03b3e4ac21114b7e895613005a834f1b4be8ba8d1f136897f05e201",
+      "path": "tests/test_improvements_04.py"
+    },
+    {
+      "sha256": "ae887cdfbf9df4427cc1b389b651c2d233fb5116d9a360c01199cd1325099f1d",
+      "path": "tests/test_independent03.py"
+    },
+    {
+      "sha256": "ee674bc29a618260323810da61655b4a0fab5a15c374c8e12081041a6a5dfc36",
+      "path": "tests/test_independent04.py"
+    },
+    {
+      "sha256": "29acf3115d6a6576e4623231658668254c3633666ef3660b206cf2f5587d7780",
+      "path": "tests/test_input_limits.py"
+    },
+    {
+      "sha256": "04c028c61e12eec43814e2f49c0d42566a50e037ceb4d357ed3fc4762dabf592",
+      "path": "tests/test_rebuild_interface.py"
+    },
+    {
+      "sha256": "3e1b7d1365e8ea04a43a76d5a5431692932f8a283fd3393b6f18dfaa1cabb850",
+      "path": "tests/test_review.py"
+    },
+    {
+      "sha256": "ecedd0d5c9208a193cea960d43f084b49acd0a0dcd20e709cb2c755675769fd3",
+      "path": "tools/smoke.py"
+    },
+    {
+      "sha256": "26a68d9b7b2b26c741e9f00ede37131c7f25eef474b988bdb8e6b1218d2021d9",
+      "path": "tools/test_access.mjs"
+    },
+    {
+      "sha256": "a011463941834d70d767df7204201aff25a59172bd6955be548cd34c7ae93307",
+      "path": "tools/test_access_independent.mjs"
+    },
+    {
+      "sha256": "265c707c12f9d09666eb4f314e85b3616108e25f67cca894537d8d2f6478307e",
+      "path": "tools/test_ui.mjs"
+    },
+    {
+      "sha256": "7a69da2c87b8670c5f68cdec85fa2ce7a58e0b7700b5e681f151d53f826fbd6e",
+      "path": "tools/ui-test-dom.mjs"
+    }
+  ],
+  "source_bundle_sha256": "f321be9736f51da798daf6ff78b8fbe4a1b6d3180005d9b5727650e38863d1b7",
+  "residual_limits": [
+    "In-process and Node tests do not establish interactive browser behavior.",
+    "No publication or remote CI success claimed by this review.",
+    "Shared-key access is not per-user isolation; state and queues are per process.",
+    "Dependency, image and secret scans are separate root release gates."
+  ],
+  "runtime_history": [
+    {
+      "superseded_at_utc": "2026-10-22T17:54:17.195978+00:00",
+      "reason": "Root replaced Python health checks with native BusyBox checks; app source bytes unchanged.",
+      "previous_runtime_review": {
+        "status": "PASS",
+        "evidence": "evidence/improvements-0.4/independent-http.json",
+        "backend_freshness": {
+          "status": "PASS",
+          "root_proof_path": "outputs/evidence/improvements-0.4/runtime-source.json",
+          "root_proof_sha256": "f6458868a09a476b0a69916f6fd2cdbcbdcf90a6a0b16c7c20d81c184cee301b",
+          "container": "dc33e800404356cfff3c95727aff76313b05d923e8fca2571038ff1230057a78",
+          "application_files_verified": 11,
+          "complete_app_tree_matches": true,
+          "image_id": "sha256:913e5e5f362f2b7fdd5cb0f2ac4c2918c12536daf156c45cab51268be8e8e648",
+          "root_docker_validated_at_utc": "2026-10-22T15:43:24.730362+00:00",
+          "independently_verified_at_utc": "2026-10-22T17:22:59.508842+00:00",
+          "attribution": "Container byte collection performed by root. Independent reviewer compared the complete root proof app-file mapping to current source, bound container/image identity through root Docker runtime evidence, and separately executed real HTTP and served-byte checks. Reviewer did not collect container-private bytes."
+        }
+      }
+    }
+  ]
+}

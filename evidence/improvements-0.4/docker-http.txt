@@ -1,0 +1,35 @@
+{
+  "synthetic": true,
+  "http_status": 200,
+  "invalid_input_status": 422,
+  "latency_ms": [
+    105.57629098184407,
+    48.556291963905096,
+    65.3029999230057
+  ],
+  "result": {
+    "retrieval": {
+      "ndcg_at_k": 1.0,
+      "average_precision_at_k": 1.0,
+      "gold_mode": "binary_relevance",
+      "average_precision_denominator": 1,
+      "precision_at_k": 0.5,
+      "recall_at_k": 1.0,
+      "reciprocal_rank_at_k": 1.0,
+      "returned_documents": 2,
+      "relevant_count": 1
+    },
+    "answer": {
+      "reference_token_f1": 1.0,
+      "lexical_groundedness": 1.0,
+      "unsupported_tokens": []
+    },
+    "limitations": [
+      "Lexical overlap is not semantic correctness or factual entailment.",
+      "Precision uses requested k even when fewer documents are returned.",
+      "Empty gold relevance makes recall, NDCG and average precision undefined (null).",
+      "NDCG uses gain 2^grade-1 and log2(rank+1), with ideal ranking from all normalized gold IDs, truncated to k.",
+      "AP@k treats positive grades as relevant and divides summed hit precisions by min(k, distinct positive gold count)."
+    ]
+  }
+}

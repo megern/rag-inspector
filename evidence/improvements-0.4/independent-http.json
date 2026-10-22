@@ -1,0 +1,93 @@
+{
+  "at_utc": "2026-10-22T17:54:13.385248+00:00",
+  "base_url": "http://127.0.0.1:18411",
+  "source_match_scope": "Exact served index, guide, every static asset, OpenAPI version and functional feature requests. Does not hash private container backend files.",
+  "checks": [
+    {
+      "path": "/",
+      "matches_current_source": true,
+      "sha256": "e3b9d54f01bdd74973014f6dec9c4d4662fd9237a7f6ba3e6f9929c04b7879cb"
+    },
+    {
+      "path": "/guide",
+      "matches_current_source": true,
+      "sha256": "d42ca883813dc3d54ce3d1cea269d8a649113b438eff0608423ebb73daa7d7a9"
+    },
+    {
+      "path": "/assets/access.js",
+      "matches_current_source": true,
+      "sha256": "f7a4a09a26b83052edc956cf886195c0f4687b0661a166320f460f3e3ccad0d5"
+    },
+    {
+      "path": "/assets/common.mjs",
+      "matches_current_source": true,
+      "sha256": "29e972fbfca1660ede9ac6681e6a978446fbdec6b1956d77eeda45797c774865"
+    },
+    {
+      "path": "/assets/style.css",
+      "matches_current_source": true,
+      "sha256": "31edaeb85459bc32652a37b11a7f5c5f716f16915fde7fe607f1ac9e3b7367c3"
+    },
+    {
+      "path": "/assets/ui.mjs",
+      "matches_current_source": true,
+      "sha256": "b484e731be1648c3bdebbf20a7697f700b61e32da9d333b45155a500240b6670"
+    }
+  ],
+  "feature": {
+    "probe": "graded truncated ranking and null-aware paired query bootstrap",
+    "paired_metric": {
+      "baseline_mean": 0.0,
+      "candidate_mean": 1.0,
+      "mean_delta": 1.0,
+      "defined_pairs": 1,
+      "total_pairs": 2,
+      "bootstrap_ci": {
+        "lower": 1.0,
+        "upper": 1.0,
+        "confidence": 0.95,
+        "iterations": 100,
+        "method": "paired percentile bootstrap over defined query deltas; linear quantiles"
+      }
+    },
+    "graded_metrics": {
+      "ndcg_at_k": 0.31939394323979897,
+      "average_precision_at_k": 0.3333333333333333,
+      "gold_mode": "graded_0_to_3",
+      "average_precision_denominator": 3,
+      "precision_at_k": 0.3333333333333333,
+      "recall_at_k": 0.3333333333333333,
+      "reciprocal_rank_at_k": 1.0,
+      "returned_documents": 1,
+      "relevant_count": 3
+    }
+  },
+  "status": "PASS",
+  "backend_freshness": {
+    "status": "PASS",
+    "root_proof_path": "outputs/evidence/improvements-0.4/runtime-source.json",
+    "root_proof_sha256": "e5392418dda519a74650eb84e06dd5fca9114b5cfb7b5ed4a8f1b719ba91d3b8",
+    "container": "993b5bbe5777c7bf1242ba7b8cc8a1a662d9d12a30e340b57f6d9a4ab3378a93",
+    "application_files_verified": 11,
+    "complete_app_tree_matches": true,
+    "image_id": "sha256:786629d7cb8db495c4ec80e932dbcd52aa86c2d3d65f5a23be4e76f012f4e16e",
+    "native_health": "healthy",
+    "root_docker_validated_at_utc": "2026-10-22T17:51:45.532963+00:00",
+    "independently_verified_at_utc": "2026-10-22T17:54:17.195978+00:00",
+    "attribution": "Root collected private container bytes and native Docker-health evidence. Independent reviewer compared the full app mapping against current files, matched container/image identity and checked fresh actual HTTP/public bytes; private bytes were not collected by this reviewer."
+  },
+  "root_backend_source_proof": {
+    "status": "PASS",
+    "root_proof_path": "outputs/evidence/improvements-0.4/runtime-source.json",
+    "root_proof_sha256": "e5392418dda519a74650eb84e06dd5fca9114b5cfb7b5ed4a8f1b719ba91d3b8",
+    "container": "993b5bbe5777c7bf1242ba7b8cc8a1a662d9d12a30e340b57f6d9a4ab3378a93",
+    "application_files_verified": 11,
+    "complete_app_tree_matches": true,
+    "image_id": "sha256:786629d7cb8db495c4ec80e932dbcd52aa86c2d3d65f5a23be4e76f012f4e16e",
+    "native_health": "healthy",
+    "root_docker_validated_at_utc": "2026-10-22T17:51:45.532963+00:00",
+    "independently_verified_at_utc": "2026-10-22T17:54:17.195978+00:00",
+    "attribution": "Root collected private container bytes and native Docker-health evidence. Independent reviewer compared the full app mapping against current files, matched container/image identity and checked fresh actual HTTP/public bytes; private bytes were not collected by this reviewer."
+  },
+  "served_bytes_match_current_source": true
+}
